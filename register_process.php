@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -10,17 +11,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("All fields are required!");
     }
 
+    $hashed = password_hash($password, PASSWORD_DEFAULT);
+
     // Prepare SQL (SECURE)
     $stmt = $conn->prepare(
         "INSERT INTO users (username, password) VALUES (?, ?)"
     );
 
     // Bind values
-    $stmt->bind_param("ss", $username, $password);
+    $stmt->bind_param("ss", $username, $hashed);
 
     // Execute
-    $stmt->execute();
-
-    echo "Account created!";
+    if ($stmt->execute()) {
+        // Set session and redirect to dashboard
+        session_regenerate_id(true);
+        $_SESSION['username'] = $username;
+        header("Location: dashboard.php");
+        exit();
+    }else {
+        echo "Error creating account: " . $stmt->error;
+    }
     
 }

@@ -2,8 +2,18 @@
 	session_start();
 	include "db.php";
 
-	$username = $_POST['username'];
-	$password = $_POST['password'];
+	if (!isset($_SERVER['REQUEST_METHOD']) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
+    	header("Location: login.php");
+    	exit();
+	}
+
+	$username = ($_POST["username"] ?? '' );
+    $password = ($_POST["password"] ?? '');
+
+	if ($username === '' || $password === '') {
+    echo "Username and password are required";
+    exit();
+	}
 
 	$sql = "SELECT * FROM users WHERE username = ?";
 	$stmt = $conn->prepare($sql);
@@ -15,7 +25,7 @@
 	if ($result->num_rows === 1 ){
 		$user = $result->fetch_assoc();
 
-		if (password_verify($password, $user['password'])){
+		if (password_verify($password, $hash)){
 
 			$_SESSION['username'] = $user['username'];
 			
