@@ -1,0 +1,7 @@
+# Ignore database
+db.php
+# Ignore logs
+*.log
+
+# Ignore SQL dumps
+*.sql

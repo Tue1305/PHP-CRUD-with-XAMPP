@@ -25,7 +25,7 @@
 	if ($result->num_rows === 1 ){
 		$user = $result->fetch_assoc();
 
-		if (password_verify($password, $hash)){
+		if (password_verify($password, $user['password'])){
 
 			$_SESSION['username'] = $user['username'];
 			

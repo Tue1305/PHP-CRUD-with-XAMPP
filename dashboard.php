@@ -36,8 +36,8 @@ if (!$result) {
                 <td><?php echo htmlspecialchars($user['username']); ?></td>
                 <td><?php echo $user['create_at']; ?></td>
                 <td>
-                    <a href="edit_user.php?id=<?php echo $user['id']; ?>">Edit</a> |
-                    <a href="delete_user.php?id=<?php echo $user['id']; ?>" onclick="return confirm('Delete this user?');">Delete</a>
+                    <a href="edit.php?id=<?php echo $user['id']; ?>">Edit</a> |
+                    <a href="delete.php?id=<?php echo $user['id']; ?>" onclick="return confirm('Delete this user?');">Delete</a>
                 </td>
             </tr>
         <?php endwhile; ?>
