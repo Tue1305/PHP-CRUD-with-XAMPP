@@ -20,8 +20,12 @@ if (!$result) {
 </head>
 <body>
     <h1>Welcome, <?php echo ($_SESSION['username']); ?> (READ-ONLY)</h1>
-    <button type="button" onclick="location.href='logout.php'">Logout</button>
-
+    <button type="button" onclick="location.href='logout.php'">Logout</button>      
+    <ul>
+        <li><a href="pos.php">🧾 Sales</a></li>
+        <li><a href="products.php">📦 Products</a></li>
+        <li><a href="logout.php">🚪 Log out</a></li>
+    </ul>
     <h2>All Users</h2>
     <table border="1" cellpadding="5" cellspacing="0">
         <tr>
