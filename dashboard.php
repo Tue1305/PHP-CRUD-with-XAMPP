@@ -23,7 +23,6 @@ if (!$result) {
     <button type="button" onclick="location.href='logout.php'">Logout</button>      
     <ul>
         <li><a href="pos.php">🧾 Sales</a></li>
-        <li><a href="products.php">📦 Products</a></li>
         <li><a href="logout.php">🚪 Log out</a></li>
     </ul>
     <h2>All Users</h2>
